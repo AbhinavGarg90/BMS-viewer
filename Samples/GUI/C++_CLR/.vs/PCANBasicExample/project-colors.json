@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "09ce4ff6-70ff-4660-b948-5ed2ab22f20a": {
+      "ProjectGuid": "09ce4ff6-70ff-4660-b948-5ed2ab22f20a",
+      "DisplayName": "PCANBasicExample",
+      "ColorIndex": 0
+    },
+    "00295496-e47e-4696-bd70-eb9428904a75": {
+      "ProjectGuid": "00295496-e47e-4696-bd70-eb9428904a75",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

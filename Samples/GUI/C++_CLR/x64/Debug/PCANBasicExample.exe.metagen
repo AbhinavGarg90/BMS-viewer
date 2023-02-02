@@ -1,0 +1,348 @@
+  PCANBasicExample.Form1.resources - Embedded, ContainedInManifestFile, 
+ImageRuntimeVersion: v4.0.30319
+Assembly PCANBasicExample, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Struct Peak.Can.Basic.TPCANMsg: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    UInt32 ID : Public
+    Peak.Can.Basic.TPCANMessageType MSGTYPE : Public, HasFieldMarshal
+    Byte LEN : Public
+    Byte[] DATA : Public, HasFieldMarshal
+Struct Peak.Can.Basic.TPCANTimestamp: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    UInt32 millis : Public
+    UInt16 millis_overflow : Public
+    UInt16 micros : Public
+Struct Peak.Can.Basic.TPCANMsgFD: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    UInt32 ID : Public
+    Peak.Can.Basic.TPCANMessageType MSGTYPE : Public, HasFieldMarshal
+    Byte DLC : Public
+    Byte[] DATA : Public, HasFieldMarshal
+Struct Peak.Can.Basic.TPCANChannelInformation: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+  Fields:
+    UInt16 channel_handle : Public, HasFieldMarshal
+    Peak.Can.Basic.TPCANDevice device_type : Public, HasFieldMarshal
+    Byte controller_number : Public
+    UInt32 device_features : Public
+    System.String device_name : Public, HasFieldMarshal
+    UInt32 device_id : Public
+    UInt32 channel_condition : Public
+Class Peak.Can.Basic.PCANBasic: AutoLayout, AnsiClass, Class, Public, Abstract, Sealed, BeforeFieldInit
+  Fields:
+    UInt16 PCAN_NONEBUS IsConst : Public, Static, HasDefault
+    UInt16 PCAN_ISABUS1 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_ISABUS2 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_ISABUS3 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_ISABUS4 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_ISABUS5 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_ISABUS6 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_ISABUS7 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_ISABUS8 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_DNGBUS1 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS1 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS2 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS3 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS4 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS5 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS6 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS7 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS8 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS9 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS10 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS11 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS12 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS13 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS14 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS15 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCIBUS16 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS1 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS2 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS3 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS4 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS5 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS6 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS7 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS8 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS9 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS10 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS11 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS12 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS13 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS14 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS15 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_USBBUS16 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCCBUS1 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_PCCBUS2 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS1 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS2 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS3 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS4 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS5 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS6 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS7 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS8 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS9 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS10 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS11 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS12 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS13 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS14 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS15 IsConst : Public, Static, HasDefault
+    UInt16 PCAN_LANBUS16 IsConst : Public, Static, HasDefault
+    System.String PCAN_BR_CLOCK IsConst : Public, Static
+    System.String PCAN_BR_CLOCK_MHZ IsConst : Public, Static
+    System.String PCAN_BR_NOM_BRP IsConst : Public, Static
+    System.String PCAN_BR_NOM_TSEG1 IsConst : Public, Static
+    System.String PCAN_BR_NOM_TSEG2 IsConst : Public, Static
+    System.String PCAN_BR_NOM_SJW IsConst : Public, Static
+    System.String PCAN_BR_NOM_SAMPLE IsConst : Public, Static
+    System.String PCAN_BR_DATA_BRP IsConst : Public, Static
+    System.String PCAN_BR_DATA_TSEG1 IsConst : Public, Static
+    System.String PCAN_BR_DATA_TSEG2 IsConst : Public, Static
+    System.String PCAN_BR_DATA_SJW IsConst : Public, Static
+    System.String PCAN_BR_DATA_SAMPLE IsConst : Public, Static
+    Int32 PCAN_PARAMETER_OFF IsConst : Public, Static, HasDefault
+    Int32 PCAN_PARAMETER_ON IsConst : Public, Static, HasDefault
+    Int32 PCAN_FILTER_CLOSE IsConst : Public, Static, HasDefault
+    Int32 PCAN_FILTER_OPEN IsConst : Public, Static, HasDefault
+    Int32 PCAN_FILTER_CUSTOM IsConst : Public, Static, HasDefault
+    Int32 PCAN_CHANNEL_UNAVAILABLE IsConst : Public, Static, HasDefault
+    Int32 PCAN_CHANNEL_AVAILABLE IsConst : Public, Static, HasDefault
+    Int32 PCAN_CHANNEL_OCCUPIED IsConst : Public, Static, HasDefault
+    Int32 PCAN_CHANNEL_PCANVIEW IsConst : Public, Static
+    Int32 LOG_FUNCTION_DEFAULT IsConst : Public, Static, HasDefault
+    Int32 LOG_FUNCTION_ENTRY IsConst : Public, Static, HasDefault
+    Int32 LOG_FUNCTION_PARAMETERS IsConst : Public, Static, HasDefault
+    Int32 LOG_FUNCTION_LEAVE IsConst : Public, Static, HasDefault
+    Int32 LOG_FUNCTION_WRITE IsConst : Public, Static, HasDefault
+    Int32 LOG_FUNCTION_READ IsConst : Public, Static, HasDefault
+    Int32 LOG_FUNCTION_ALL IsConst : Public, Static, HasDefault
+    Int32 TRACE_FILE_SINGLE IsConst : Public, Static, HasDefault
+    Int32 TRACE_FILE_SEGMENTED IsConst : Public, Static, HasDefault
+    Int32 TRACE_FILE_DATE IsConst : Public, Static, HasDefault
+    Int32 TRACE_FILE_TIME IsConst : Public, Static, HasDefault
+    Int32 TRACE_FILE_OVERWRITE IsConst : Public, Static, HasDefault
+    Int32 FEATURE_FD_CAPABLE IsConst : Public, Static, HasDefault
+    Int32 FEATURE_DELAY_CAPABLE IsConst : Public, Static, HasDefault
+    Int32 FEATURE_IO_CAPABLE IsConst : Public, Static, HasDefault
+    Int32 SERVICE_STATUS_STOPPED IsConst : Public, Static, HasDefault
+    Int32 SERVICE_STATUS_RUNNING IsConst : Public, Static, HasDefault
+    System.String LOOKUP_DEVICE_TYPE IsConst : Public, Static
+    System.String LOOKUP_DEVICE_ID IsConst : Public, Static
+    System.String LOOKUP_CONTROLLER_NUMBER IsConst : Public, Static
+    System.String LOOKUP_IP_ADDRESS IsConst : Public, Static
+  Methods:
+    Initialize(UInt16, TPCANBaudrate): PrivateScope, Public, Static, HideBySig
+    Initialize(UInt16(HasFieldMarshal), TPCANBaudrate(HasFieldMarshal), TPCANType(HasFieldMarshal), UInt32, UInt16): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    InitializeFD(UInt16(HasFieldMarshal), String): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    Uninitialize(UInt16(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    Reset(UInt16(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    GetStatus(UInt16(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    Read(UInt16, TPCANMsg&): PrivateScope, Public, Static, HideBySig
+    Read(UInt16(HasFieldMarshal), TPCANMsg&, TPCANTimestamp&): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    ReadFD(UInt16, TPCANMsgFD&): PrivateScope, Public, Static, HideBySig
+    ReadFD(UInt16(HasFieldMarshal), TPCANMsgFD&, UInt64&): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    Write(UInt16(HasFieldMarshal), TPCANMsg&): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    WriteFD(UInt16(HasFieldMarshal), TPCANMsgFD&): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    FilterMessages(UInt16(HasFieldMarshal), UInt32, UInt32, TPCANMode(HasFieldMarshal)): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    GetValue(UInt16, TPCANParameter, TPCANChannelInformation[]): PrivateScope, Public, Static, HideBySig
+    GetValue(UInt16(HasFieldMarshal), TPCANParameter(HasFieldMarshal), UInt64&, UInt32): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    GetValue(UInt16(HasFieldMarshal), TPCANParameter(HasFieldMarshal), UInt32&, UInt32): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    GetValue(UInt16(HasFieldMarshal), TPCANParameter(HasFieldMarshal), StringBuilder, UInt32): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    SetValue(UInt16(HasFieldMarshal), TPCANParameter(HasFieldMarshal), String(HasFieldMarshal), UInt32): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    SetValue(UInt16(HasFieldMarshal), TPCANParameter(HasFieldMarshal), UInt64&, UInt32): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    SetValue(UInt16(HasFieldMarshal), TPCANParameter(HasFieldMarshal), UInt32&, UInt32): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    GetErrorText(TPCANStatus(HasFieldMarshal), UInt16, StringBuilder): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+    LookUpChannel(String, UInt16&): PrivateScope, Public, Static, HideBySig, PinvokeImpl
+Struct PCANBasicExample.MessageStatus: AutoLayout, AnsiClass, Class, Public, SequentialLayout, Sealed, BeforeFieldInit
+  :System.ValueType
+    Void .ctor(Peak.Can.Basic.TPCANMsgFD, UInt64, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Properties:
+    System.String TimeString 'get ' : 
+    Boolean MarkedAsUpdated 'get set' : 
+    Boolean ShowingPeriod 'get set' : 
+    Int32 Count 'get ' : 
+    System.String DataString 'get ' : 
+    System.String IdString 'get ' : 
+    System.String TypeString 'get ' : 
+    Int32 Position 'get ' : 
+    UInt64 Timestamp 'get ' : 
+    Peak.Can.Basic.TPCANMsgFD CANMsg 'get ' : 
+  Methods:
+    Update(ValueType TPCANMsgFD IsBoxed, UInt64): PrivateScope, Public, HideBySig
+    get_CANMsg(): PrivateScope, Public, HideBySig, SpecialName
+    get_Timestamp(): PrivateScope, Public, HideBySig, SpecialName
+    get_Position(): PrivateScope, Public, HideBySig, SpecialName
+    get_TypeString(): PrivateScope, Public, HideBySig, SpecialName
+    get_IdString(): PrivateScope, Public, HideBySig, SpecialName
+    get_DataString(): PrivateScope, Public, HideBySig, SpecialName
+    get_Count(): PrivateScope, Public, HideBySig, SpecialName
+    get_ShowingPeriod(): PrivateScope, Public, HideBySig, SpecialName
+    set_ShowingPeriod(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_MarkedAsUpdated(): PrivateScope, Public, HideBySig, SpecialName
+    set_MarkedAsUpdated(Boolean(HasFieldMarshal)): PrivateScope, Public, HideBySig, SpecialName
+    get_TimeString(): PrivateScope, Public, HideBySig, SpecialName
+Class PCANBasicExample.Form1: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Struct Peak.Can.Basic.TPCANStatus: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    UInt32 value__ : Public, SpecialName, RTSpecialName
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_OK = 0 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_XMTFULL = 1 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_OVERRUN = 2 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_BUSLIGHT = 4 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_BUSHEAVY = 8 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_BUSWARNING = 8 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_BUSPASSIVE = 262144 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_BUSOFF = 16 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_ANYBUSERR = 262172 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_QRCVEMPTY = 32 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_QOVERRUN = 64 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_QXMTFULL = 128 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_REGTEST = 256 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_NODRIVER = 512 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_HWINUSE = 1024 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_NETINUSE = 2048 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_ILLHW = 5120 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_ILLNET = 6144 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_ILLCLIENT = 7168 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_ILLHANDLE = 7168 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_RESOURCE = 8192 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_ILLPARAMTYPE = 16384 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_ILLPARAMVAL = 32768 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_UNKNOWN = 65536 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_ILLDATA = 131072 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_ILLMODE = 524288 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_CAUTION = 33554432 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_INITIALIZE = 67108864 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANStatus PCAN_ERROR_ILLOPERATION = 134217728 : Public, Static, Literal, HasDefault
+Struct Peak.Can.Basic.TPCANDevice: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Byte value__ : Public, SpecialName, RTSpecialName
+    Peak.Can.Basic.TPCANDevice PCAN_NONE = 0 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANDevice PCAN_PEAKCAN = 1 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANDevice PCAN_ISA = 2 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANDevice PCAN_DNG = 3 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANDevice PCAN_PCI = 4 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANDevice PCAN_USB = 5 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANDevice PCAN_PCC = 6 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANDevice PCAN_VIRTUAL = 7 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANDevice PCAN_LAN = 8 : Public, Static, Literal, HasDefault
+Struct Peak.Can.Basic.TPCANParameter: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Byte value__ : Public, SpecialName, RTSpecialName
+    Peak.Can.Basic.TPCANParameter PCAN_DEVICE_ID = 1 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_DEVICE_NUMBER = 1 : Public, Static, Literal, HasDefault (Obsolete)
+    Peak.Can.Basic.TPCANParameter PCAN_5VOLTS_POWER = 2 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_RECEIVE_EVENT = 3 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_MESSAGE_FILTER = 4 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_API_VERSION = 5 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_CHANNEL_VERSION = 6 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_BUSOFF_AUTORESET = 7 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_LISTEN_ONLY = 8 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_LOG_LOCATION = 9 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_LOG_STATUS = 10 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_LOG_CONFIGURE = 11 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_LOG_TEXT = 12 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_CHANNEL_CONDITION = 13 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_HARDWARE_NAME = 14 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_RECEIVE_STATUS = 15 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_CONTROLLER_NUMBER = 16 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_TRACE_LOCATION = 17 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_TRACE_STATUS = 18 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_TRACE_SIZE = 19 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_TRACE_CONFIGURE = 20 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_CHANNEL_IDENTIFYING = 21 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_CHANNEL_FEATURES = 22 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_BITRATE_ADAPTING = 23 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_BITRATE_INFO = 24 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_BITRATE_INFO_FD = 25 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_BUSSPEED_NOMINAL = 26 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_BUSSPEED_DATA = 27 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_IP_ADDRESS = 28 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_LAN_SERVICE_STATUS = 29 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_ALLOW_STATUS_FRAMES = 30 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_ALLOW_RTR_FRAMES = 31 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_ALLOW_ERROR_FRAMES = 32 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_INTERFRAME_DELAY = 33 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_ACCEPTANCE_FILTER_11BIT = 34 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_ACCEPTANCE_FILTER_29BIT = 35 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_IO_DIGITAL_CONFIGURATION = 36 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_IO_DIGITAL_VALUE = 37 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_IO_DIGITAL_SET = 38 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_IO_DIGITAL_CLEAR = 39 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_IO_ANALOG_VALUE = 40 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_FIRMWARE_VERSION = 41 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_ATTACHED_CHANNELS_COUNT = 42 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_ATTACHED_CHANNELS = 43 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_ALLOW_ECHO_FRAMES = 44 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANParameter PCAN_DEVICE_PART_NUMBER = 45 : Public, Static, Literal, HasDefault
+Struct Peak.Can.Basic.TPCANMessageType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Byte value__ : Public, SpecialName, RTSpecialName
+    Peak.Can.Basic.TPCANMessageType PCAN_MESSAGE_STANDARD = 0 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANMessageType PCAN_MESSAGE_RTR = 1 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANMessageType PCAN_MESSAGE_EXTENDED = 2 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANMessageType PCAN_MESSAGE_FD = 4 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANMessageType PCAN_MESSAGE_BRS = 8 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANMessageType PCAN_MESSAGE_ESI = 16 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANMessageType PCAN_MESSAGE_ECHO = 32 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANMessageType PCAN_MESSAGE_ERRFRAME = 64 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANMessageType PCAN_MESSAGE_STATUS = 128 : Public, Static, Literal, HasDefault
+Struct Peak.Can.Basic.TPCANMode: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Byte value__ : Public, SpecialName, RTSpecialName
+    Peak.Can.Basic.TPCANMode PCAN_MODE_STANDARD = 0 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANMode PCAN_MODE_EXTENDED = 2 : Public, Static, Literal, HasDefault
+Struct Peak.Can.Basic.TPCANBaudrate: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    UInt16 value__ : Public, SpecialName, RTSpecialName
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_1M = 20 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_800K = 22 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_500K = 28 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_250K = 284 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_125K = 796 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_100K = 17199 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_95K = 49998 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_83K = 34091 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_50K = 18223 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_47K = 5140 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_33K = 35631 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_20K = 21295 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_10K = 26415 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANBaudrate PCAN_BAUD_5K = 32639 : Public, Static, Literal, HasDefault
+Struct Peak.Can.Basic.TPCANType: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Byte value__ : Public, SpecialName, RTSpecialName
+    Peak.Can.Basic.TPCANType PCAN_TYPE_ISA = 1 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANType PCAN_TYPE_ISA_SJA = 9 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANType PCAN_TYPE_ISA_PHYTEC = 4 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANType PCAN_TYPE_DNG = 2 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANType PCAN_TYPE_DNG_EPP = 3 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANType PCAN_TYPE_DNG_SJA = 5 : Public, Static, Literal, HasDefault
+    Peak.Can.Basic.TPCANType PCAN_TYPE_DNG_SJA_EPP = 6 : Public, Static, Literal, HasDefault
