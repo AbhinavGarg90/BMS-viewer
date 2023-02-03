@@ -100,11 +100,11 @@ def reset_message(buttonpos):
 
 
 loops_between_updates = 1
-number_of_colums, number_of_rows, number_of_cells = 12, 12, 144
+number_of_colums, number_of_rows, number_of_cells = 24, 6, 144
 voltage_lim, temperature_lim = 20, 40 #if voltage exceeds this number it would cause the program to crash
 code_for_val, code_for_vinf, code_for_tinf, code_for_stat = "400", "402", "403", "401"
 max_temp, max_volt = 0, 0
-# iter_total = 0
+iter_total = 0
 
 
 
@@ -112,7 +112,7 @@ max_temp, max_volt = 0, 0
 final_array = np.empty(shape=(number_of_colums,number_of_rows))
 final_array2 = np.empty(shape=(number_of_colums,number_of_rows))
 fig, (ax,ax2,ax3) = plt.subplots(1,3, height_ratios = [1], width_ratios = [3,3,1])
-fig.set_size_inches(12,6)
+fig.set_size_inches(8,8)
 fig.tight_layout()
 axes_list = [ax,ax2,ax3]
 
@@ -125,11 +125,11 @@ ax2.axis('off')
 ax3.axis('off')
 
 
-ax.set_xlim((0,12))
-ax.set_ylim((0,12))
+ax.set_xlim((0,6))
+ax.set_ylim((0,24))
 
-ax2.set_xlim((0,12))
-ax2.set_ylim((0,12))
+ax2.set_xlim((0,6))
+ax2.set_ylim((0,24))
 
 ax3.set_xlim((0,4))
 ax3.set_ylim((0,12))
@@ -140,9 +140,9 @@ ax3.set_ylim((0,12))
 
 
 #buttons
-button1_ax = plt.axes([0.85,0.3,0.1,0.1])
-button2_ax = plt.axes([0.85,0.2,0.1,0.1])
-button3_ax = plt.axes([0.85,0.1,0.1,0.1])
+button1_ax = plt.axes([0.78,0.3,0.2,0.1])
+button2_ax = plt.axes([0.78,0.2,0.2,0.1])
+button3_ax = plt.axes([0.78,0.1,0.2,0.1])
 
 start_message_button = Button(button1_ax, "start")
 stop_message_button = Button(button2_ax, "stop")
@@ -171,17 +171,17 @@ for bytestring in bus:
     elif bytestring.startswith(code_for_vinf) == True:  #for BMSVINF 
         volt_info_list = bytearray_to_list_general(bytestring, [[2,1],[5,1],[0,1,10**-4],[3,4,10**-4],[6,7,10**-4]])
 
-        ax3.text(x=0, y=10, s=f'V_max = {round(volt_info_list[2],3)} @ Cell {volt_info_list[0]}', fontsize="small")
-        ax3.text(x=0, y=9, s=f'V_min = {round(volt_info_list[3],3)} @ Cell {volt_info_list[1]}', fontsize="small")
-        ax3.text(x=0, y=8, s=f'V_avg = {round(volt_info_list[4],3)}',fontsize="small")
+        ax3.text(x=-3, y=10, s=f'V_max = {round(volt_info_list[2],3)} @ Cell {volt_info_list[0]}', fontsize="small")
+        ax3.text(x=-3, y=9, s=f'V_min = {round(volt_info_list[3],3)} @ Cell {volt_info_list[1]}', fontsize="small")
+        ax3.text(x=-3, y=8, s=f'V_avg = {round(volt_info_list[4],3)}',fontsize="small")
 
         continue
     elif bytestring.startswith(code_for_tinf) == True:  #for BMSTINF
         temp_info_list = bytearray_to_list_general(bytestring, [[2,1],[5,1],[0,1,1],[3,4,1],[6,7,1]])
 
-        ax3.text(x=0, y=7, s=f'T_max = {round(temp_info_list[2],3)} @ Cell {temp_info_list[0]}', fontsize="small")
-        ax3.text(x=0, y=6, s=f'T_min = {round(temp_info_list[3],3)} @ Cell {temp_info_list[1]}', fontsize="small")
-        ax3.text(x=0, y=5, s=f'T_avg = {round(temp_info_list[4],3)}',fontsize="small")
+        ax3.text(x=-3, y=7, s=f'T_max = {round(temp_info_list[2],3)} @ Cell {temp_info_list[0]}', fontsize="small")
+        ax3.text(x=-3, y=6, s=f'T_min = {round(temp_info_list[3],3)} @ Cell {temp_info_list[1]}', fontsize="small")
+        ax3.text(x=-3, y=5, s=f'T_avg = {round(temp_info_list[4],3)}',fontsize="small")
         continue
     elif bytestring.startswith(code_for_stat) == True:  #for BMSSTAT
         state_info = bytearray_to_list_general(bytestring, [[0,1],[1,1],[2,1],[3,1],[4,1],[5,1]])
@@ -212,13 +212,13 @@ for bytestring in bus:
     # background colour for text varies with voltage/temperature to create heatmap
     ann = ax.text(
 
-        x=cell_array[0],y=column,s=str(round(cell_array[1],2)), fontsize = 'x-small',
+        x=cell_array[0],y=column,s=str(round(cell_array[1],3)), fontsize = 'x-small',
          horizontalalignment = "center", backgroundcolor=matplotlib.colors.to_hex(colorheatmap(cell_array[1],[2,5],20)), color = "black"
        
          )
     ann2 = ax2.text(
 
-        x=cell_array[0],y=column,s=str(round(cell_array[2],2)), fontsize = 'x-small',
+        x=cell_array[0],y=column,s=str(round(cell_array[2],3)), fontsize = 'x-small',
          horizontalalignment = "center", backgroundcolor=matplotlib.colors.to_hex(colorheatmap(cell_array[2],[5,30],50)), color = "black"
        
          )
