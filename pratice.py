@@ -17,21 +17,22 @@ list_file = text_file.splitlines()
 ## initialising bus object
 interface = "pcan"
 channel = "PCAN_USBBUS1"
-state = can.bus.BusState.PASSIVE
+state1 = can.bus.BusState.PASSIVE
 bitrate = 500000
 using_bus = False
 state = 0
 
 try:
-
     bus = can.Bus(interface=interface,
                 channel=channel,
                 receive_own_messages=True)
     using_bus = True
 except:
+
     bus = list_file
     using_bus = False
 
+print(using_bus)
 
 def bytearray_to_list_general(data_string, input_array):
     try:    
@@ -49,11 +50,13 @@ def bytearray_to_list_general(data_string, input_array):
 
     return output_list
 
-def colorheatmap(value, min_max, lim):
+def colorheatmap(color,value, min_max, lim):
     if value < min_max[0] or value > min_max[1]:
         return  [1,0,0]
-    else:
+    elif color == "red":
         return [1,1-value/lim,0]
+    elif color == "green":
+        return [0.4,1-value/lim,0]
 
 def showError(ifError):
     if ifError == True:
@@ -66,37 +69,40 @@ def showError(ifError):
         reset_message_button.color, reset_message_button.hovercolor = "lightgray", "white"
 
 #button message functions
+# Normal current 0x0037 5.5A
+# Lower current 0x000A 1A
+# Charger Voltage 0x1170 600
+# Slow Charge Threshhold 32700 3.27V
+# Stop Charge 41500 4.15V
+# Charge Out ID 405
+
 def start_message(buttonpos):
-    msg= Message(data=[0,0,0,0,1,0])
+    
     if state == 2:
-        showError(True)
         return
+    msg= Message(arbitration_id=403105268, data=[0,0,0,0,1,0])
     try:
         bus.send(msg=msg,timeout=None)
     except:
         print("unable to send message")
+
 def stop_message(buttonpos):
     if state == 2:
-        showError(True)
         return
     msg= Message(data=[0,0,0,0,0,0])
     try:
         bus.send(msg=msg,timeout=None)
     except:
         print("unable to send message")
+
 def reset_message(buttonpos):
     if state == 2:
-        showError(True)
         return
     elif state == 0 or state == 1:
         showError(False)
         pass
 
     
-
-
-
-
 
 
 loops_between_updates = 1
@@ -120,16 +126,16 @@ ax.set_title("Voltage")
 ax2.set_title("Temperature")
 ax3.set_title("Info")
 
-ax.axis('off')
-ax2.axis('off')
+ax.axis('on')
+ax2.axis('on')
 ax3.axis('off')
 
 
-ax.set_xlim((0,6))
-ax.set_ylim((0,24))
+ax.set_xlim((-1,6))
+ax.set_ylim((-1,24))
 
-ax2.set_xlim((0,6))
-ax2.set_ylim((0,24))
+ax2.set_xlim((-1,6))
+ax2.set_ylim((-1,24))
 
 ax3.set_xlim((0,4))
 ax3.set_ylim((0,12))
@@ -140,13 +146,13 @@ ax3.set_ylim((0,12))
 
 
 #buttons
-button1_ax = plt.axes([0.78,0.3,0.2,0.1])
-button2_ax = plt.axes([0.78,0.2,0.2,0.1])
-button3_ax = plt.axes([0.78,0.1,0.2,0.1])
+button1_ax = plt.axes([0.8,0.25,0.1,0.1])
+button2_ax = plt.axes([0.8,0.15,0.1,0.1])
+button3_ax = plt.axes([0.8,0.05,0.1,0.1])
 
 start_message_button = Button(button1_ax, "start")
 stop_message_button = Button(button2_ax, "stop")
-reset_message_button = Button(button3_ax, "reset charge")
+reset_message_button = Button(button3_ax, "reset \n charge")
 
 start_message_button.on_clicked(start_message)
 stop_message_button.on_clicked(stop_message)
@@ -171,23 +177,25 @@ for bytestring in bus:
     elif bytestring.startswith(code_for_vinf) == True:  #for BMSVINF 
         volt_info_list = bytearray_to_list_general(bytestring, [[2,1],[5,1],[0,1,10**-4],[3,4,10**-4],[6,7,10**-4]])
 
-        ax3.text(x=-3, y=10, s=f'V_max = {round(volt_info_list[2],3)} @ Cell {volt_info_list[0]}', fontsize="small")
-        ax3.text(x=-3, y=9, s=f'V_min = {round(volt_info_list[3],3)} @ Cell {volt_info_list[1]}', fontsize="small")
-        ax3.text(x=-3, y=8, s=f'V_avg = {round(volt_info_list[4],3)}',fontsize="small")
+        ax3.text(x=-2, y=10, s=f'V_max = {round(volt_info_list[2],3)} @ Cell {volt_info_list[0]}', fontsize="small")
+        ax3.text(x=-2, y=9, s=f'V_min = {round(volt_info_list[3],3)} @ Cell {volt_info_list[1]}', fontsize="small")
+        ax3.text(x=-2, y=8, s=f'V_avg = {round(volt_info_list[4],3)}',fontsize="small")
 
         continue
     elif bytestring.startswith(code_for_tinf) == True:  #for BMSTINF
         temp_info_list = bytearray_to_list_general(bytestring, [[2,1],[5,1],[0,1,1],[3,4,1],[6,7,1]])
 
-        ax3.text(x=-3, y=7, s=f'T_max = {round(temp_info_list[2],3)} @ Cell {temp_info_list[0]}', fontsize="small")
-        ax3.text(x=-3, y=6, s=f'T_min = {round(temp_info_list[3],3)} @ Cell {temp_info_list[1]}', fontsize="small")
-        ax3.text(x=-3, y=5, s=f'T_avg = {round(temp_info_list[4],3)}',fontsize="small")
+        ax3.text(x=-2, y=7, s=f'T_max = {round(temp_info_list[2],3)} @ Cell {temp_info_list[0]}', fontsize="small")
+        ax3.text(x=-2, y=6, s=f'T_min = {round(temp_info_list[3],3)} @ Cell {temp_info_list[1]}', fontsize="small")
+        ax3.text(x=-2, y=5, s=f'T_avg = {round(temp_info_list[4],3)/3}',fontsize="small")
         continue
     elif bytestring.startswith(code_for_stat) == True:  #for BMSSTAT
         state_info = bytearray_to_list_general(bytestring, [[0,1],[1,1],[2,1],[3,1],[4,1],[5,1]])
         state_info = [x+1 for x in state_info]
+        ax3.text(-2, y=4, s=f"No Errors")
         if 1 in state_info:
             state = 2
+            showError(True)
         continue
     else:
         continue
@@ -213,13 +221,13 @@ for bytestring in bus:
     ann = ax.text(
 
         x=cell_array[0],y=column,s=str(round(cell_array[1],3)), fontsize = 'x-small',
-         horizontalalignment = "center", backgroundcolor=matplotlib.colors.to_hex(colorheatmap(cell_array[1],[2,5],20)), color = "black"
+         horizontalalignment = "center", backgroundcolor=matplotlib.colors.to_hex(colorheatmap("green",cell_array[1],[2,5],20)), color = "black"
        
          )
     ann2 = ax2.text(
 
         x=cell_array[0],y=column,s=str(round(cell_array[2],3)), fontsize = 'x-small',
-         horizontalalignment = "center", backgroundcolor=matplotlib.colors.to_hex(colorheatmap(cell_array[2],[5,30],50)), color = "black"
+         horizontalalignment = "center", backgroundcolor=matplotlib.colors.to_hex(colorheatmap("red",cell_array[2],[5,30],50)), color = "black"
        
          )
 
