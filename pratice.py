@@ -80,7 +80,7 @@ def start_message(buttonpos):
     
     if state == 2:
         return
-    msg= Message(arbitration_id=403105268, data=[0,0,0,0,1,0])
+    msg= Message(arbitration_id=403105268, data=[18,102,0,10,1,0])
     try:
         bus.send(msg=msg,timeout=None)
     except:
